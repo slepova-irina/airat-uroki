@@ -85,6 +85,12 @@ h3{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.25;ma
 .inside li::marker{color:var(--muted)}
 .end.one{grid-template-columns:1fr}
 .note{border:1.5px dashed var(--fg);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.num.sm{font-size:12px}
+.url{font-size:13.5px;word-break:break-all}
+.url a{color:var(--muted)}
+.grp-row{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+.gdesc{font-size:14.5px;color:var(--muted)}
+.gnote{font-size:15px;font-weight:600;border-top:1px solid var(--line);padding-top:10px}
 </style>
 </head>
 <body>
@@ -92,9 +98,213 @@ h3{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.25;ma
   <header class="top">
     <p class="eyebrow">Жёлтый клуб · лид-магниты</p>
     <h1>Лид-магниты Жёлтого клуба</h1>
-    <p class="lead">Каждый лид-магнит ведёт из сторис в бот. 6 уроков снимает Айрат, 10 оформляет команда.</p>
-    <nav aria-label="Разделы"><a href="#airat">Айрату снять</a><a href="#team">Команде оформить</a></nav>
+    <p class="lead">Каждый лид-магнит ведёт из сторис в бот. 12 уроков уже готовы, 6 новых снимает Айрат, 10 оформляет команда.</p>
+    <nav aria-label="Разделы"><a href="#ready">Готовые</a><a href="#airat">Айрату снять</a><a href="#team">Команде оформить</a></nav>
   </header>
+
+  <section class="sec" id="ready">
+    <h2>Готовые лид-магниты</h2>
+    <p class="lead">12 уроков уже отсняты и работают: ссылка ведёт в бот @Airat_help_bot. Карточки собраны по названиям уроков; если в самом уроке акцент другой, поправим.</p>
+    <div class="note">
+      <p class="aud-h">Что показывает разбор</p>
+      <div class="grp-row"><p class="act">Ещё не начал</p><p class="gdesc">Холодные и сомневающиеся: зачем блог, что купить, где взять время</p><div class="chips"><span class="chip ghost">ПОЧЕМУ</span><span class="chip ghost">ОБОРУДОВАНИЕ</span><span class="chip ghost">10</span></div></div><div class="grp-row"><p class="act">Начинает снимать</p><p class="gdesc">Первые видео: тряска, мутная картинка</p><div class="chips"><span class="chip ghost">ТЕЛЕФОН</span><span class="chip ghost">НАСТРОЙКИ</span></div></div><div class="grp-row"><p class="act">Уже снимает, хочет лучше</p><p class="gdesc">Монтаж, красота, форматы и сюжеты</p><div class="chips"><span class="chip ghost">МОНТАЖ</span><span class="chip ghost">ЭСТЕТИКА</span><span class="chip ghost">КОЛЛАЖ</span><span class="chip ghost">ЕДА</span><span class="chip ghost">ПРИРОДА</span><span class="chip ghost">МАШИНА</span><span class="chip ghost">АСМР</span></div></div>
+      <p class="gnote">Готовые уроки почти все про технику и красоту, они хорошо работают для тех, кто уже снимает. Пусто там, где человек боится камеры, не верит в себя или хочет клиентов и денег. Эти дыры закрывают новые уроки Айрата и подкасты ниже.</p>
+    </div>
+    <div class="cards">
+<article class="card" id="r-pochemu">
+  <header class="ch"><span class="num sm">Г1</span><h3>Почему всем нужно вести блог</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: ПОЧЕМУ</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-pochemu" target="_blank" rel="noopener">go.airat-reels.com/igreels-pochemu</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Думаешь, блог — не для тебя? Записал урок, почему сегодня он нужен каждому. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Новички, мастера без блога, 45+</p><span class="stage">Холодный, сомневается</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Зачем мне блог? Я же не блогер»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Кажется пустой тратой времени</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Знакомые получают клиентов через блог, а у неё его нет</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-oborud">
+  <header class="ch"><span class="num sm">Г2</span><h3>Оборудование</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: ОБОРУДОВАНИЕ</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-oborudovanie" target="_blank" rel="noopener">go.airat-reels.com/igreels-oborudovanie</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Думаешь, нужна дорогая камера? Рассказал, что реально нужно для старта. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Новички, эксперты</p><span class="stage">Собирается начать, откладывает</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Что купить, чтобы начать снимать?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Думает, что без дорогой техники нельзя, и откладывает</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Смотрит обзоры техники вместо съёмки</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-10">
+  <header class="ch"><span class="num sm">Г3</span><h3>3 видео за 10 минут</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: 10</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-10video" target="_blank" rel="noopener">go.airat-reels.com/igreels-10video</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Нет времени на блог? Показал, как снять 3 видео за 10 минут. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Мамы, мастера, все занятые</p><span class="stage">Хочет снимать, нет времени</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«У меня просто нет времени на блог»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Нехватка времени</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Опять за день ничего не сняла</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-telefon">
+  <header class="ch"><span class="num sm">Г4</span><h3>Как держать телефон</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: ТЕЛЕФОН</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-telefon" target="_blank" rel="noopener">go.airat-reels.com/igreels-telefon</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Видео трясётся и получается кривым? Показал, как правильно держать телефон. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Новички</p><span class="stage">Только начинает снимать</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Почему видео дрожит и получается кривым?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Тряска, заваленный горизонт</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Пересмотрела видео, а всё трясётся</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-nastroyki">
+  <header class="ch"><span class="num sm">Г5</span><h3>Настройки телефона</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: НАСТРОЙКИ</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-nastroyki" target="_blank" rel="noopener">go.airat-reels.com/igreels-nastroyki</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Видео получается мутным? Дело в настройках телефона. Показал, какие включить. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Все, кто снимает на телефон</p><span class="stage">Снимает, хромает качество</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Почему видео на телефоне выходит мутным?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Плохое качество картинки</p>
+      <p class="tag trig"><span class="tk">Триггер</span>После загрузки в Инстаграм видео стало хуже</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-montazh">
+  <header class="ch"><span class="num sm">Г6</span><h3>Монтаж</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: МОНТАЖ</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-montazh" target="_blank" rel="noopener">go.airat-reels.com/igreels-montazh</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Сняла, а смонтировать не получается? Записал урок по монтажу на телефоне. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Новички и те, кто уже снимает</p><span class="stage">Снимает, не умеет собирать</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Как смонтировать видео на телефоне, если я не умею?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Монтаж кажется сложным и долгим</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Сняла кадры, а собрать их в ролик не может</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-estetika">
+  <header class="ch"><span class="num sm">Г7</span><h3>Эстетичные видео</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: ЭСТЕТИКА</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-estetika" target="_blank" rel="noopener">go.airat-reels.com/igreels-estetika</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Почему у других видео красивые, а у тебя обычные? Показал, как снимать эстетично на телефон. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Лайфстайл, бьюти-мастера, творцы</p><span class="stage">Снимает, видео выглядят просто</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Почему у других красиво, а у меня обычно?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Видео выглядят дёшево</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Сравнивает свои ролики с красивыми аккаунтами</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-kollazh">
+  <header class="ch"><span class="num sm">Г8</span><h3>Коллаж</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: КОЛЛАЖ</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-kollazh" target="_blank" rel="noopener">go.airat-reels.com/igreels-kollazh</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Видела такие коллажи в рилс? Показал, как сделать за пару минут. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Лайфстайл, мастера (до/после)</p><span class="stage">Снимает, хочет разнообразия</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Как сделать такой коллаж, как у красивых аккаунтов?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Контент однообразный</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Увидела красивый коллаж в ленте</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-eda">
+  <header class="ch"><span class="num sm">Г9</span><h3>Еда</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: ЕДА</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-eda" target="_blank" rel="noopener">go.airat-reels.com/igreels-eda</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Еда на видео выглядит не так вкусно, как в жизни? Показал, как снимать аппетитно. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Лайфстайл, кондитеры, кафе</p><span class="stage">Снимает, хочет красивую еду</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Как снять еду, чтобы она выглядела аппетитно?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>На видео еда выглядит невкусно</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Красивая тарелка, а видео это не передаёт</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-priroda">
+  <header class="ch"><span class="num sm">Г10</span><h3>Природа</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: ПРИРОДА</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-priroda" target="_blank" rel="noopener">go.airat-reels.com/igreels-priroda</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Красиво в жизни, а на видео плоско? Показал, как снимать природу. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Лайфстайл, путешественники, турагенты</p><span class="stage">Снимает, хочет красивые пейзажи</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Как снять природу, чтобы было как в жизни?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>На видео красота пропадает</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Красивое место, а видео вышло плоским</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-mashina">
+  <header class="ch"><span class="num sm">Г11</span><h3>Съёмка в машине</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: МАШИНА</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-mashina" target="_blank" rel="noopener">go.airat-reels.com/igreels-mashina</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Много времени проводишь в машине? Покажу, как снимать прямо там. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Риелторы, турагенты, мамы, все в разъездах</p><span class="stage">Снимает, нет места и времени</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Где снимать, если дома нет условий?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Нет места и времени, всё время в дороге</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Сидит в машине в ожидании или в пробке</p>
+    </div>
+  </div>
+</article>
+<article class="card" id="r-asmr">
+  <header class="ch"><span class="num sm">Г12</span><h3>ASMR + 3 части «Мини-штатива»</h3></header>
+  <div class="chips"><span class="chip">Готов · отснят</span><span class="chip ghost">Код: АСМР</span></div>
+  <p class="url"><a href="https://go.airat-reels.com/igreels-asmr" target="_blank" rel="noopener">go.airat-reels.com/igreels-asmr</a></p>
+  <div class="story"><p class="lbl">Что сказать в сторис</p><p class="story-t">«Залипаешь на АСМР-видео? Показал, как снимать такие, плюс 3 урока про мини-штатив. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому</p>
+    <div class="aud-row"><p class="seg">Мастера (процесс), кулинары, лайфстайл</p><span class="stage">Снимает, хочет удерживать внимание</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Как снимать видео, от которых невозможно оторваться?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Видео не цепляют</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Сама залипает на АСМР-ролики</p>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
   <section class="sec" id="airat">
     <h2>Айрату снять</h2>
     <nav aria-label="Уроки"><a href="#strah">1 Страх</a><a href="#klienty">2 Клиенты</a><a href="#golos">3 Голос</a><a href="#ii">4 ИИ</a><a href="#huk">5 Хук</a><a href="#lico">6 Лицо</a></nav>
