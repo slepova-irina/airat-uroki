@@ -3,219 +3,438 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Шпаргалки Айрата</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;600;700&display=swap">
+<title>Лид-магниты Жёлтого клуба</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;600;700;800&display=swap">
 <style>
-/* Layout: одна карточка = один экран телефона, листаются вниз; наверху быстрые переходы */
+/* Layout: одна колонка карточек; в карточке — сторис, затем выделенный жёлтый блок «Кому снимаем», затем сценарий */
 :root{
-  --bg:#f6f4ec; --card:#ffffff; --fg:#1d1b14; --muted:#6b6656;
-  --yellow:#ffd60a; --yellow-ink:#1d1b14; --line:#e6e1cf; --soft:#fff7cc;
+  --bg:#f5f3ea; --card:#ffffff; --fg:#1c1a12; --muted:#6a6553; --line:#e4dfcb;
+  --yellow:#ffd60a; --on-yellow:#1c1a12; --aud:#fff3b0; --aud-line:#f1d75a;
+  --story:#1c1a12; --on-story:#fbf8ee;
+  --pain:#fde3dc; --on-pain:#8a2b14; --trig:#dcebfb; --on-trig:#1d4c80;
   --display:"Unbounded",system-ui,sans-serif; --body:"Manrope",system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#15140f; --card:#1f1d16; --fg:#f3efe0; --muted:#aaa38c;
-  --yellow:#ffd60a; --yellow-ink:#15140f; --line:#36322458; --soft:#2d2915; color-scheme:dark}}
+  --bg:#14130e; --card:#1e1c15; --fg:#f2eedf; --muted:#a9a28a; --line:#34301f;
+  --aud:#3a3210; --aud-line:#6b5b12; --story:#f2eedf; --on-story:#14130e;
+  --pain:#4a2318; --on-pain:#ffc2b0; --trig:#173452; --on-trig:#b9d8ff; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#15140f; --card:#1f1d16; --fg:#f3efe0; --muted:#aaa38c;
-  --yellow:#ffd60a; --yellow-ink:#15140f; --line:#36322458; --soft:#2d2915; color-scheme:dark}
+  --bg:#14130e; --card:#1e1c15; --fg:#f2eedf; --muted:#a9a28a; --line:#34301f;
+  --aud:#3a3210; --aud-line:#6b5b12; --story:#f2eedf; --on-story:#14130e;
+  --pain:#4a2318; --on-pain:#ffc2b0; --trig:#173452; --on-trig:#b9d8ff; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.45}
-.wrap{max-width:520px;margin:0 auto;padding-block:20px 48px;
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5}
+p{margin:0}
+.wrap{max-width:640px;margin:0 auto;padding-block:28px 56px;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
-  display:flex;flex-direction:column;gap:20px}
-header h1{font-family:var(--display);font-weight:800;font-size:26px;line-height:1.15;margin:0 0 6px;text-wrap:balance}
-header p{margin:0;color:var(--muted);font-size:15px}
-nav{display:flex;flex-wrap:wrap;gap:8px}
-nav a{font-weight:700;font-size:14px;text-decoration:none;color:var(--fg);border:1.5px solid var(--fg);
-  border-radius:999px;padding:6px 12px}
-nav a:hover,nav a:focus-visible{background:var(--yellow);color:var(--yellow-ink);border-color:var(--yellow);outline:none}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px;
-  display:flex;flex-direction:column;gap:16px;scroll-margin-top:16px}
-.top{display:flex;align-items:center;gap:12px}
-.num{font-family:var(--display);font-weight:800;font-size:15px;background:var(--yellow);color:var(--yellow-ink);
-  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none}
-.card h2{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.2;margin:0;text-wrap:balance}
-.label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
-.hook{background:var(--soft);border-radius:12px;padding:14px 16px;font-weight:700;font-size:18px;margin:0}
-ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
-ol li::marker{font-weight:700;color:var(--muted)}
-.row{display:grid;grid-template-columns:1fr;gap:10px}
-.mini{border-top:1px solid var(--line);padding-top:12px}
-.mini p:last-child{margin:0}
-.foot{color:var(--muted);font-size:14px;text-align:center}
-.who{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;border:1.5px dashed var(--line);border-radius:12px;padding:14px}
-.who div{min-width:0}
-.who .label{margin-bottom:2px}
-.who p:last-child{margin:0;font-size:15px}
-.who .wide{grid-column:1/-1}
-.stage{display:inline-block;background:var(--fg);color:var(--bg);border-radius:999px;padding:2px 10px;font-weight:700;font-size:13px}
-@media (max-width:380px){.who{grid-template-columns:1fr}}
+  display:flex;flex-direction:column;gap:28px}
+.top{display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,6vw,36px);line-height:1.1;margin:0;text-wrap:balance}
+.lead{color:var(--muted);max-width:52ch}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+nav a{font-weight:700;font-size:14px;text-decoration:none;color:var(--fg);border:1.5px solid var(--fg);border-radius:999px;padding:6px 12px}
+nav a:hover,nav a:focus-visible{background:var(--yellow);border-color:var(--yellow);color:var(--on-yellow);outline:none}
+.sec{display:flex;flex-direction:column;gap:16px}
+h2{font-family:var(--display);font-weight:600;font-size:20px;margin:0;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--yellow);flex:none}
+.cards{display:flex;flex-direction:column;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 20px;display:flex;flex-direction:column;gap:18px;scroll-margin-top:16px}
+.ch{display:flex;align-items:center;gap:12px}
+.num{font-family:var(--display);font-weight:800;font-size:15px;background:var(--yellow);color:var(--on-yellow);width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none}
+h3{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.25;margin:0;text-wrap:balance}
+.lbl{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.story{background:var(--story);color:var(--on-story);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.story .lbl{color:inherit;opacity:.7}
+.story-t{font-weight:700;font-size:16.5px}
+.link{align-self:flex-start;margin-top:8px;font-size:13px;font-weight:800;background:var(--yellow);color:var(--on-yellow);border-radius:999px;padding:3px 10px}
+.aud{background:var(--aud);border:1.5px solid var(--aud-line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.aud-h{font-family:var(--display);font-weight:600;font-size:14px}
+.aud-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:6px}
+.seg{font-weight:700;min-width:0}
+.grp{font-weight:600;color:var(--muted)}
+.stage{background:var(--fg);color:var(--bg);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:800;white-space:nowrap}
+.q{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.3;margin-bottom:6px;text-wrap:balance}
+.tags{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tag{border-radius:12px;padding:10px 12px;font-size:14.5px;font-weight:600;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tk{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.pain{background:var(--pain);color:var(--on-pain)}
+.trig{background:var(--trig);color:var(--on-trig)}
+.hook{font-weight:700;font-size:17px}
+.steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.steps>li::marker{font-family:var(--display);font-weight:800;color:var(--fg)}
+.steps>li{display:flex;flex-direction:column;gap:6px;padding-left:4px}
+.steps{gap:16px}
+.act{font-weight:800}
+.say,.show{font-size:15px;display:flex;flex-direction:column;gap:2px}
+.k{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mini-list{margin:2px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.mini-list li::marker{color:var(--muted);font-weight:700}
+.week{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:2px}
+.week p{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:14.5px;display:flex;flex-direction:column}
+.week b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.end{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.end div{min-width:0}
+@media (max-width:480px){.tags,.end{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+.sub{font-family:var(--display);font-weight:600;font-size:15px;color:var(--muted);margin:8px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--yellow);color:var(--on-yellow);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:800}
+.chip.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.inside{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.inside li::marker{color:var(--muted)}
+.end.one{grid-template-columns:1fr}
+.note{border:1.5px dashed var(--fg);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
 </style>
 </head>
 <body>
-
 <div class="wrap">
-  <header>
-    <h1>6 уроков: шпаргалки для съёмки</h1>
-    <p>Одна карточка — один урок. Открыл, пробежал глазами, снял. Каждый урок 5–10 минут, своими словами.</p>
+  <header class="top">
+    <p class="eyebrow">Жёлтый клуб · лид-магниты</p>
+    <h1>Лид-магниты Жёлтого клуба</h1>
+    <p class="lead">Каждый лид-магнит ведёт из сторис в бот. 6 уроков снимает Айрат, 10 оформляет команда.</p>
+    <nav aria-label="Разделы"><a href="#airat">Айрату снять</a><a href="#team">Команде оформить</a></nav>
   </header>
-
-  <nav aria-label="Уроки">
-    <a href="#strah">1 Страх</a><a href="#klienty">2 Клиенты</a><a href="#golos">3 Голос</a>
-    <a href="#ii">4 ИИ</a><a href="#huk">5 Хук</a><a href="#lico">6 Лицо</a>
-  </nav>
-
-  <section class="card" id="strah">
-    <div class="top"><span class="num">1</span><h2>Первое видео за 1 день</h2></div>
-    <div><p class="label">Начни с этого</p><p class="hook">«Хочешь снимать, но стыдно, что скажут знакомые? Сегодня снимешь первое видео».</p></div>
-    <div class="who">
-      <div><p class="label">Сегмент</p><p>Новички, мамы, 45+ («хочу проявиться»)</p></div>
-      <div><p class="label">Стадия</p><p><span class="stage">Хочет, но боится</span></p></div>
-      <div class="wide"><p class="label">Вопрос в голове</p><p>«А что подумают знакомые? Я буду выглядеть глупо»</p></div>
-      <div><p class="label">Боль</p><p>Страх осуждения, ступор перед камерой</p></div>
-      <div><p class="label">Триггер</p><p>Видит, как другие снимают, и думает «я бы тоже хотела»</p></div>
+  <section class="sec" id="airat">
+    <h2>Айрату снять</h2>
+    <nav aria-label="Уроки"><a href="#strah">1 Страх</a><a href="#klienty">2 Клиенты</a><a href="#golos">3 Голос</a><a href="#ii">4 ИИ</a><a href="#huk">5 Хук</a><a href="#lico">6 Лицо</a></nav>
+    <div class="cards">
+<article class="card" id="strah">
+  <header class="ch"><span class="num">1</span><h3>Первое видео за 1 день</h3></header>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Записал урок, как снять первое видео, даже если стыдно. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому снимаем</p>
+    <div class="aud-row"><p class="seg">Новички, мамы, 45+ <span class="grp">«хочу проявиться»</span></p><span class="stage">Хочет, но боится</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«А что подумают знакомые? Я буду выглядеть глупо»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Страх осуждения, ступор перед камерой</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Видит, как другие снимают, и думает «я бы тоже хотела»</p>
     </div>
-    <div><p class="label">Скажи по порядку</p>
-      <ol>
-        <li>Твоя история: как сам боялся первого видео</li>
-        <li>Чего боятся: знакомых, внешности, нуля просмотров</li>
-        <li>Правда: никто не осуждает, большинство просто листает</li>
-        <li>Снимай без лица: руки, процесс, утро</li>
-        <li>3 кадра, 5–7 секунд, одна фраза текстом</li>
-      </ol></div>
-    <div class="row">
-      <div class="mini"><p class="label">Задание</p><p>Снять и выложить сегодня, отметить меня</p></div>
-      <div class="mini"><p class="label">Финал</p><p>На марафоне 7 видео за неделю, рядом те, кому тоже страшно</p></div>
+  </div>
+  <div><p class="lbl">Начни с этого</p><p class="hook">«Хочешь снимать, но стыдно, что скажут знакомые? Сегодня снимешь первое видео»</p></div>
+  <div><p class="lbl">Что сделать в кадре</p><ol class="steps"><li><p class="act">Рассказать свою историю</p><p class="say"><span class="k">Сказать</span>«Когда я снимал первое видео, мне было стыдно. Я думал, что все будут смеяться. А потом…» и рассказать, что было на самом деле.</p></li>
+<li><p class="act">Назвать страхи зрителя</p><p class="say"><span class="k">Сказать</span>«Скорее всего, ты боишься трёх вещей: что скажут знакомые, что ты плохо выглядишь и что видео никто не посмотрит».</p></li>
+<li><p class="act">Снять каждый страх одной фразой</p><p class="say"><span class="k">Сказать</span>«Знакомые почти не замечают, а кто заметил — втайне завидует. Твою внешность разглядываешь только ты. Мало просмотров на старте — у всех».</p></li>
+<li><p class="act">Дать идею первого видео без лица</p><p class="say"><span class="k">Сказать</span>«Лицо в первом видео не обязательно».</p><p class="show"><span class="k">Показать</span>2–3 примера на экране: руки за работой, процесс, утренний кофе.</p></li>
+<li><p class="act">Дать формулу</p><p class="say"><span class="k">Сказать</span>«3 коротких кадра, всего 5–7 секунд, и одна фраза текстом на экране. Это 10 минут».</p></li></ol></div>
+  <div class="end">
+    <div><p class="lbl">Задание зрителю</p><p>Снять такое видео сегодня, выложить и отметить Айрата.</p></div>
+    <div><p class="lbl">Финал</p><p>«На марафоне за неделю снимешь 7 видео, и рядом будут люди, которым так же страшно. Ссылка ниже.»</p></div>
+  </div>
+</article>
+<article class="card" id="klienty">
+  <header class="ch"><span class="num">2</span><h3>3 видео, которые приводят заявки</h3></header>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Снимаешь, а записи нет? Записал урок про 3 видео, после которых пишут в директ. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому снимаем</p>
+    <div class="aud-row"><p class="seg">Мастера, услуги, эксперты <span class="grp">«хочу клиентов и деньги»</span></p><span class="stage">Снимает, ищет решение</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Я снимаю, а записи нет. Зачем мне это всё?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Пустая запись, видео не приносят денег</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Выложила ролик: лайки есть, заявок нет</p>
+    </div>
+  </div>
+  <div><p class="lbl">Начни с этого</p><p class="hook">«Снимаешь, ставят лайки, а записи нет? Покажу 3 видео, после которых пишут в директ»</p></div>
+  <div><p class="lbl">Что сделать в кадре</p><ol class="steps"><li><p class="act">Сказать, почему красивые видео не продают</p><p class="say"><span class="k">Сказать</span>«Клиенту мало красивой картинки. Ему важно понять три вещи: ты умеешь, ты решишь его проблему и тебе можно доверять. Сейчас покажу 3 видео, которые на это отвечают».</p></li>
+<li><p class="act">Видео №1: покажи результат</p><p class="say"><span class="k">Сказать</span>«Первое видео — покажи свою работу: как было и как стало, или сам процесс. В конце скажи, сколько это заняло и кому подойдёт».</p><p class="show"><span class="k">Показать</span>пример такого ролика (свой или участницы). Например: «2 часа, держится 3 недели, подойдёт тем, у кого тонкие ногти».</p></li>
+<li><p class="act">Видео №2: ответь на частый вопрос клиента</p><p class="say"><span class="k">Сказать</span>«Вспомни вопрос, который тебе задают чаще всего: сколько стоит, больно ли, сколько держится. Сними ответ на него за 20–30 секунд».</p><p class="show"><span class="k">Показать</span>пример ролика-ответа.</p></li>
+<li><p class="act">Видео №3: покажи себя</p><p class="say"><span class="k">Сказать</span>«К тебе идут не только за услугой, а к тебе. Расскажи, почему выбрала это дело, или покажи свой рабочий день».</p><p class="show"><span class="k">Показать</span>пример ролика «мой день» или «почему я этим занимаюсь».</p></li>
+<li><p class="act">Дать призыв для конца видео</p><p class="say"><span class="k">Сказать</span>«В конце каждого видео одна просьба. Не „подписывайтесь“, а „напиши ЗАПИСЬ в директ“».</p></li>
+<li><p class="act">По желанию: пример участницы клуба</p><p class="say"><span class="k">Сказать</span>Коротко: кто она, какое видео сняла, сколько пришло заявок.</p></li></ol></div>
+  <div class="end">
+    <div><p class="lbl">Задание зрителю</p><p>Снять одно из трёх видео на этой неделе. Проще всего начать с ответа на вопрос.</p></div>
+    <div><p class="lbl">Финал</p><p>«На марафоне разбираем такие видео под твою нишу. Ссылка ниже.»</p></div>
+  </div>
+</article>
+<article class="card" id="golos">
+  <header class="ch"><span class="num">3</span><h3>Как говорить в кадре</h3></header>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Разбираешься в теме, а видео не досматривают? Записал урок, что поменять в подаче. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому снимаем</p>
+    <div class="aud-row"><p class="seg">Эксперты, творцы <span class="grp">«хочу признания и аудитории»</span></p><span class="stage">Снимает, ищет решение</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Я знаю много, почему меня не досматривают?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Знания есть, аудитории нет, звучит скучно</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Низкий досмотр в статистике</p>
+    </div>
+  </div>
+  <div><p class="lbl">Начни с этого</p><p class="hook">«Разбираешься в теме, а видео не досматривают? Дело не в знаниях, а в подаче»</p></div>
+  <div><p class="lbl">Что сделать в кадре</p><ol class="steps"><li><p class="act">Показать ошибку на себе</p><p class="say"><span class="k">Сказать</span>Сначала сказать: «Всем привет, меня зовут Айрат, сегодня я расскажу…», остановиться: «Всё, тут вы уже ушли».</p></li>
+<li><p class="act">Тут же показать, как надо</p><p class="say"><span class="k">Сказать</span>Сказать то же самое, но сразу с сути: «Ты теряешь зрителей из-за одной фразы в начале видео».</p></li>
+<li><p class="act">Дать правило</p><p class="say"><span class="k">Сказать</span>«Одно видео — одна мысль. Хочешь рассказать про три вещи — сними три видео».</p></li>
+<li><p class="act">Дать формулу из 4 шагов</p><p class="say"><span class="k">Сказать</span>«Зацепи вопросом → скажи главное → приведи пример → закончи выводом».</p><p class="show"><span class="k">Показать</span>сказать пример по этой формуле на 20 секунд.</p></li>
+<li><p class="act">Показать «как с подругой»</p><p class="say"><span class="k">Сказать</span>Одну мысль сказать двумя способами: «Необходимо обеспечивать регулярность публикаций» и «Выкладывай хотя бы 3 видео в неделю». Спросить: «Какое понятнее?»</p></li>
+<li><p class="act">Дать два приёма для голоса</p><p class="say"><span class="k">Сказать</span>«После главной фразы сделай паузу. И улыбайся — улыбку слышно».</p></li>
+<li><p class="act">Ответить, читать ли с листа</p><p class="say"><span class="k">Сказать</span>«Не читай. Выпиши 3 слова на листок и говори своими словами».</p></li></ol></div>
+  <div class="end">
+    <div><p class="lbl">Задание зрителю</p><p>Записать 30 секунд по схеме и сравнить со старыми видео.</p></div>
+    <div><p class="lbl">Финал</p><p>«На марафоне каждый день практика и обратная связь. Ссылка ниже.»</p></div>
+  </div>
+</article>
+<article class="card" id="ii">
+  <header class="ch"><span class="num">4</span><h3>Видео нейросетью за 5 минут</h3></header>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Записал урок, как оживить фото нейросетью за 5 минут, даже если ты в этом ноль. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому снимаем</p>
+    <div class="aud-row"><p class="seg">Новички, лайфстайл <span class="grp">«хочу популярности и возможностей»</span></p><span class="stage">Холодный, любопытство</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Все делают видео нейросетями, а я отстаю?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Страх отстать, кажется, что это сложно</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Видит ИИ-видео в ленте и хочет так же</p>
+    </div>
+  </div>
+  <div><p class="lbl">Начни с этого</p><p class="hook">«Все уже делают видео с ИИ? Покажу, как оживить фото за 5 минут, даже если ты в этом ноль»</p></div>
+  <div><p class="lbl">Что сделать в кадре</p><ol class="steps"><li><p class="act">Сказать, зачем это</p><p class="say"><span class="k">Сказать</span>«Оживлённое фото останавливает ленту лучше обычного. Подойдёт для блога, поздравления близким, рекламы услуги».</p></li>
+<li><p class="act">Назвать сервис и цену</p><p class="say"><span class="k">Сказать</span>Название сервиса и есть ли бесплатный вариант (уточнить перед съёмкой).</p></li>
+<li><p class="act">Показать на экране по шагам</p><p class="show"><span class="k">Показать</span>запись экрана: загрузил фото → написал, что должно произойти («девушка улыбается и поворачивает голову») → скачал.</p></li>
+<li><p class="act">Показать две ошибки</p><p class="say"><span class="k">Сказать</span>«Мутное фото нейросеть испортит. И не проси сразу много движения — будет неестественно».</p><p class="show"><span class="k">Показать</span>по одному неудачному примеру.</p></li></ol></div>
+  <div class="end">
+    <div><p class="lbl">Задание зрителю</p><p>Оживить своё фото и выложить в сторис с отметкой Айрата.</p></div>
+    <div><p class="lbl">Финал</p><p>«Хочешь видео, которые работают каждый день, — приходи на марафон. Ссылка ниже.»</p></div>
+  </div>
+</article>
+<article class="card" id="huk">
+  <header class="ch"><span class="num">5</span><h3>Первые 3 секунды</h3></header>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Почему у тебя 200 просмотров? Записал урок про первые 3 секунды. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому снимаем</p>
+    <div class="aud-row"><p class="seg">Все, кто уже снимает </p><span class="stage">Снимает, упёрся в охваты</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Почему у меня так мало просмотров?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Старается, а видео пролистывают</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Опять 200 просмотров под новым видео</p>
+    </div>
+  </div>
+  <div><p class="lbl">Начни с этого</p><p class="hook">«Почему у тебя 200 просмотров? Видео листают в первые 3 секунды»</p></div>
+  <div><p class="lbl">Что сделать в кадре</p><ol class="steps"><li><p class="act">Сказать, что решается в первые 3 секунды</p><p class="say"><span class="k">Сказать</span>«За 3 секунды человек решает: смотреть или листать. Поэтому начало важнее всего видео».</p></li>
+<li><p class="act">Назвать 3 правила первого кадра</p><p class="say"><span class="k">Сказать</span>«В первую секунду что-то двигается. На экране есть текст — многие смотрят без звука. И сразу суть, без „привет“».</p></li>
+<li><p class="act">Показать 10 вариантов начала</p><ol class="mini-list"><li><b>Вопрос:</b> «Почему у тебя 200 просмотров?»</li><li><b>Ошибка:</b> «Эту ошибку делают 9 из 10 мастеров»</li><li><b>Результат сначала:</b> показать готовую работу, потом «вот как я это сделал»</li><li><b>Запрет:</b> «Никогда не снимай так»</li><li><b>Цифра:</b> «3 приёма, после которых досматривают»</li><li><b>Спорное мнение:</b> «Красивые видео не работают»</li><li><b>Секрет:</b> «Об этом не говорят на курсах»</li><li><b>Узнавание:</b> «Если ты тоже снимаешь по ночам…»</li><li><b>До / после:</b> два кадра рядом в первую секунду</li><li><b>Странный кадр:</b> необычное действие, на котором глаз застревает</li></ol></li>
+<li><p class="act">Дать правило текста на экране</p><p class="say"><span class="k">Сказать</span>«До 7 слов, крупно, по центру».</p></li>
+<li><p class="act">Разобрать 2 своих ролика</p><p class="say"><span class="k">Сказать</span>Где начало сработало и где нет, с цифрами просмотров.</p></li></ol></div>
+  <div class="end">
+    <div><p class="lbl">Задание зрителю</p><p>Переснять начало старого видео с низкими просмотрами и сравнить.</p></div>
+    <div><p class="lbl">Финал</p><p>«На марафоне каждый день проверяем, какие начала работают. Ссылка ниже.»</p></div>
+  </div>
+</article>
+<article class="card" id="lico">
+  <header class="ch"><span class="num">6</span><h3>Если не нравишься себе на видео</h3></header>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Не нравишься себе на видео? Записал урок, как это исправить. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Кому снимаем</p>
+    <div class="aud-row"><p class="seg">Женщины, 45+, новички <span class="grp">«хочу проявиться»</span></p><span class="stage">Хочет, но барьер</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Я себе не нравлюсь на видео: лицо, голос. Это можно исправить?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Неприятие себя в кадре</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Пересмотрела своё видео и удалила, не выложив</p>
+    </div>
+  </div>
+  <div><p class="lbl">Начни с этого</p><p class="hook">«Видишь себя на видео и думаешь: это не я? Это нормально и поправимо»</p></div>
+  <div><p class="lbl">Что сделать в кадре</p><ol class="steps"><li><p class="act">Объяснить, почему так</p><p class="say"><span class="k">Сказать</span>«Ты привыкла видеть себя в зеркале, а камера показывает тебя без отражения. И голос изнутри звучит иначе. Это не про внешность, это непривычно».</p></li>
+<li><p class="act">Показать свет</p><p class="say"><span class="k">Сказать</span>«Встань лицом к окну — это лучший свет, и он бесплатный».</p><p class="show"><span class="k">Показать</span>сравнение: у окна и со светом сзади.</p></li>
+<li><p class="act">Показать ракурс</p><p class="say"><span class="k">Сказать</span>«Держи телефон чуть выше глаз, не снизу».</p><p class="show"><span class="k">Показать</span>сравнение: сверху и снизу.</p></li>
+<li><p class="act">Дать приём с голосом</p><p class="say"><span class="k">Сказать</span>«Переслушай своё видео 5–6 раз подряд. На шестой раз голос перестаёт казаться чужим».</p></li>
+<li><p class="act">Дать «неделю привыкания»</p><p class="say"><span class="k">Сказать</span>«Привыкай за неделю, по шагу в день:»</p><div class="week"><p><b>День 1–2</b>снимаешь только руки и процесс</p><p><b>День 3–4</b>то же + твой голос за кадром</p><p><b>День 5–6</b>лицо в кадре на 2–3 секунды</p><p><b>День 7</b>говоришь в кадре 15 секунд</p></div></li>
+<li><p class="act">По желанию: история участницы 45+</p><p class="say"><span class="k">Сказать</span>Коротко: как начинала и что изменилось.</p></li></ol></div>
+  <div class="end">
+    <div><p class="lbl">Задание зрителю</p><p>Снять себя у окна и сравнить со старым видео.</p></div>
+    <div><p class="lbl">Финал</p><p>«На марафоне рядом люди, которые проходят то же самое. Ссылка ниже.»</p></div>
+  </div>
+</article>
     </div>
   </section>
-
-  <section class="card" id="klienty">
-    <div class="top"><span class="num">2</span><h2>3 видео, которые приводят заявки</h2></div>
-    <div><p class="label">Начни с этого</p><p class="hook">«Снимаешь, ставят лайки, а записи нет? Покажу 3 видео, после которых пишут в директ».</p></div>
-    <div class="who">
-      <div><p class="label">Сегмент</p><p>Мастера, услуги, эксперты («хочу клиентов и деньги»)</p></div>
-      <div><p class="label">Стадия</p><p><span class="stage">Снимает, ищет решение</span></p></div>
-      <div class="wide"><p class="label">Вопрос в голове</p><p>«Я снимаю, а записи нет. Зачем мне это всё?»</p></div>
-      <div><p class="label">Боль</p><p>Пустая запись, видео не приносят денег</p></div>
-      <div><p class="label">Триггер</p><p>Выложила ролик: лайки есть, заявок нет</p></div>
+  <section class="sec" id="team">
+    <h2>Команде оформить</h2>
+    <p class="lead">10 лид-магнитов без съёмки Айрата. Форматы: гайды, инструкции, чек-листы, шаблоны и голосовые подкасты. Карточка устроена так же, только вместо сценария — что внутри.</p>
+    <h3 class="sub">Гайды, инструкции, чек-листы, шаблоны</h3>
+    <div class="cards">
+<article class="card" id="idei">
+  <header class="ch"><span class="num">7</span><h3>30 идей видео на месяц для своей ниши</h3></header>
+  <div class="chips"><span class="chip">Гайд</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Не знаешь, что снимать? Собрали 30 идей на месяц под твою нишу. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Новички, мастера, эксперты</p><span class="stage">Хочет снимать, не знает что</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Открываю камеру и не знаю, что снимать»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Нет тем, пустая голова</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Решила вести блог и застряла на первой теме</p>
     </div>
-    <div><p class="label">Скажи по порядку</p>
-      <ol>
-        <li>Клиенту важно: умеешь? решишь мою проблему? можно доверять?</li>
-        <li>Видео «Результат»: до/после или процесс</li>
-        <li>Видео «Ответ на частый вопрос клиента», 20–30 секунд</li>
-        <li>Видео «Ты как человек»: почему этим занимаешься</li>
-        <li>В конце один призыв: «Напиши ЗАПИСЬ в директ»</li>
-        <li>Пример участницы клуба с заявками</li>
-      </ol></div>
-    <div class="row">
-      <div class="mini"><p class="label">Задание</p><p>Снять одно из трёх, проще всего начать с ответа на вопрос</p></div>
-      <div class="mini"><p class="label">Финал</p><p>На марафоне разбираем такие видео под твою нишу</p></div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>4 версии гайда: мастер, эксперт, мама, лайфстайл</li><li>30 идей, разбитых по неделям: знакомство, польза, процесс, результаты, личное</li><li>К каждой идее одна строка «что снять» и пример первой фразы</li><li>В конце календарь на месяц, чтобы отмечать снятое</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+<article class="card" id="plan">
+  <header class="ch"><span class="num">8</span><h3>Контент-план на неделю за 15 минут</h3></header>
+  <div class="chips"><span class="chip">Шаблон</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Снимаешь урывками и бросаешь? Дарим шаблон, который заполняется за 15 минут. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Все, кто начал снимать</p><span class="stage">Начала, но нет системы</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Нет времени, снимаю урывками и бросаю»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Хаос, нет регулярности</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Опять неделю ничего не выкладывала</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>Таблица на 7 дней: тема, формат, первая фраза, призыв</li><li>Как заполнить за 15 минут: 3 шага</li><li>Пример заполненной недели для мастера</li><li>Совет: снимать 3 видео за один заход</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+<article class="card" id="shapka">
+  <header class="ch"><span class="num">9</span><h3>Оформи профиль, чтобы писали в директ</h3></header>
+  <div class="chips"><span class="chip">Чек-лист</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Видео смотрят, а в директ не пишут? Проверь профиль по чек-листу из 10 пунктов. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Мастера, эксперты, услуги</p><span class="stage">Есть просмотры, нет заявок</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Видео смотрят, а в директ никто не пишет»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Просмотры не превращаются в клиентов</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Под видео просмотры, в директе тишина</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>Имя профиля: ниша и город, чтобы находили в поиске</li><li>Аватар с лицом, а не логотип</li><li>Описание в 3 строки: кто ты, для кого, что получит клиент</li><li>Ссылка и понятный призыв: куда писать</li><li>Актуальное: прайс, работы, отзывы, как записаться</li><li>3 закреплённых видео и 2 примера профилей до/после</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+<article class="card" id="direkt">
+  <header class="ch"><span class="num">10</span><h3>Готовые ответы клиентам в директе</h3></header>
+  <div class="chips"><span class="chip">Гайд</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Спрашивают «сколько стоит» и пропадают? Собрали ответы, после которых записываются. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Мастера, услуги</p><span class="stage">Заявки есть, но теряются</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Спрашивают «сколько стоит?» и пропадают»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Клиенты уходят из переписки</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Клиент спросил цену и исчез</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>10 частых вопросов («сколько стоит», «есть ли время», «больно ли», «долго держится?») и шаблоны ответов</li><li>Правило: ответ + встречный вопрос, чтобы разговор шёл дальше</li><li>2 сообщения, чтобы вернуть пропавшего клиента</li><li>Что не писать в директе</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+<article class="card" id="tekst">
+  <header class="ch"><span class="num">11</span><h3>5 формул подписей, которые продают без впаривания</h3></header>
+  <div class="chips"><span class="chip">Гайд</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Не знаешь, что написать под видео? Дарим 5 формул подписей, которые продают мягко. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Эксперты, мастера</p><span class="stage">Снимает, подписи пишет коротко или никак</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Не умею писать и боюсь выглядеть продажником»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Страх навязываться</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Смотрит на пустое поле подписи</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>5 формул: история → вывод; проблема → решение; вопрос зрителю; до/после; «3 ошибки»</li><li>К каждой формуле шаблон и готовый пример</li><li>5 мягких призывов для конца подписи</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+<article class="card" id="trendy">
+  <header class="ch"><span class="num">12</span><h3>Тренды недели: звуки и форматы</h3></header>
+  <div class="chips"><span class="chip">Подборка каждую неделю</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Какой звук сейчас в тренде? Каждую неделю собираем подборку в боте. Забирай по ссылке»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Все, кто снимает регулярно</p><span class="stage">Снимает, хочет больше охватов</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Что сейчас в тренде, какой звук взять?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Страх пропустить волну</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Видит один звук у всех и не знает, где его брать</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>Каждую неделю 5 звуков и 3 формата</li><li>К каждому одной строкой, как использовать в своей нише, и пример</li><li>Приходит в бот по понедельникам: повод возвращаться</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+    </div>
+    <h3 class="sub">Голосовые подкасты и кейсы</h3>
+    <div class="note">
+      <p class="aud-h">Подкасты от Айрата без отдельной записи</p>
+      <ul class="inside">
+        <li><b>Собрать из того, что уже есть:</b> нарезать по темам старые эфиры, подкасты и интервью Айрата. Одна тема — один выпуск на 10–15 минут.</li>
+        <li><b>Озвучить голосом Айрата через сервис:</b> команда пишет сценарий, сервис озвучивает его голосом Айрата. Только с согласия Айрата, и он прослушивает выпуск перед публикацией.</li>
+      </ul>
+    </div>
+    <div class="cards">
+<article class="card" id="keys">
+  <header class="ch"><span class="num">13</span><h3>С нуля до первых заявок</h3></header>
+  <div class="chips"><span class="chip">Голосовой подкаст-интервью</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Думаешь, это работает только у блогеров? Послушай историю участницы клуба, которая начала с нуля. Ссылка тут»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Все, особенно «хочу клиентов»</p><span class="stage">Сомневается, что получится</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«А у обычных людей это работает? Или только у Айрата?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Недоверие, «у меня не получится»</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Видит результат Айрата и думает «ему легко»</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>Гостья из канала кейсов, 15–20 минут</li><li>Вопросы: кем была до клуба и сколько было подписчиков; чего боялась</li><li>Какое было первое видео и что было после</li><li>Какое видео принесло первую заявку и сколько заявок сейчас</li><li>Совет тому, кто боится начать</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+<article class="card" id="natalya">
+  <header class="ch"><span class="num">14</span><h3>С 40 подписчиков до 64 тысяч: история Натальи</h3></header>
+  <div class="chips"><span class="chip">Голосовой подкаст · уже записан</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«11 лет строила бизнес с мужем, после развода осталась ни с чем. Сейчас у неё 64 тысячи подписчиков. Послушай историю Натальи. Ссылка тут»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Женщины, которые хотят сами себя обеспечивать</p><span class="stage">Хочет начать заново, не верит в себя</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Можно ли начать с нуля и самой себя обеспечивать?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Потеря опоры, страх начинать заново одной</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Жизненный перелом: развод, «всё осталось у него»</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>Наталья Шуберт, парикмахер из Санкт-Петербурга</li><li>11 лет вместе с мужем строила бизнес с нуля; после развода всё совместно нажитое осталось у него</li><li>Как начала блог с 40 подписчиков и выросла до 64 тысяч</li><li>Что дал блог: клиентов, свой доход, уверенность в себе</li><li>Главная мысль: женщина может сама себя обеспечивать и развиваться</li><li>Совет тем, кто начинает заново</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+<article class="card" id="vozrast">
+  <header class="ch"><span class="num">15</span><h3>Начать блог после 45</h3></header>
+  <div class="chips"><span class="chip">Голосовой подкаст</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Думаешь, блог — это для молодых? Послушай, как наша участница начала после 45. Ссылка тут»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">45+</p><span class="stage">Хочет, но мешает возраст</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«Мне уже поздно, это для молодых»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Страх выглядеть смешно, сложно с техникой</p>
+      <p class="tag trig"><span class="tk">Триггер</span>Увидела ровесницу в соцсетях</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>Гостья 45+</li><li>Почему начала и что было самым трудным: техника, страх, мнение окружающих</li><li>Как разобралась с телефоном</li><li>Что изменилось за это время</li><li>Совет ровесницам</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
+<article class="card" id="nisha">
+  <header class="ch"><span class="num">16</span><h3>Как снимают мастера, риелторы, турагенты</h3></header>
+  <div class="chips"><span class="chip">Разбор 5 аккаунтов</span></div>
+  <div class="story"><p class="lbl">Текст сторис со ссылкой</p><p class="story-t">«Думаешь, в твоей нише это не работает? Разобрали 5 аккаунтов участников из разных сфер. Ссылка тут»</p><span class="link">ссылка на бот</span></div>
+  <div class="aud">
+    <p class="aud-h">Для кого</p>
+    <div class="aud-row"><p class="seg">Мастера, риелторы, турагенты</p><span class="stage">Примеряет на свою нишу</span></div>
+    <p class="lbl">Вопрос в голове</p>
+    <p class="q">«А как это выглядит в моей сфере?»</p>
+    <div class="tags">
+      <p class="tag pain"><span class="tk">Боль</span>Кажется, что ниша «особенная»</p>
+      <p class="tag trig"><span class="tk">Триггер</span>«У меня специфика, мне это не подойдёт»</p>
+    </div>
+  </div>
+  <div><p class="lbl">Что внутри</p><ul class="inside"><li>5 аккаунтов участников из разных ниш</li><li>По каждому: было и стало (подписчики, заявки)</li><li>2 видео, которые сработали, и почему</li><li>Одна идея, которую можно повторить у себя</li></ul></div>
+  <div class="end one"><div><p class="lbl">Финал</p><p>«Хочешь пройти это не в одиночку — приходи на марафон. Ссылка ниже».</p></div></div>
+</article>
     </div>
   </section>
-
-  <section class="card" id="golos">
-    <div class="top"><span class="num">3</span><h2>Как говорить в кадре</h2></div>
-    <div><p class="label">Начни с этого</p><p class="hook">«Разбираешься в теме, а видео не досматривают? Дело не в знаниях, а в подаче».</p></div>
-    <div class="who">
-      <div><p class="label">Сегмент</p><p>Эксперты, творцы («хочу признания и аудитории»)</p></div>
-      <div><p class="label">Стадия</p><p><span class="stage">Снимает, ищет решение</span></p></div>
-      <div class="wide"><p class="label">Вопрос в голове</p><p>«Я знаю много, почему меня не досматривают?»</p></div>
-      <div><p class="label">Боль</p><p>Знания есть, аудитории нет, звучит скучно</p></div>
-      <div><p class="label">Триггер</p><p>Низкий досмотр в статистике видео</p></div>
-    </div>
-    <div><p class="label">Скажи по порядку</p>
-      <ol>
-        <li>Не начинай с «Всем привет, меня зовут…», сразу к сути</li>
-        <li>Одно видео — одна мысль</li>
-        <li>Схема: крючок → мысль → пример → вывод</li>
-        <li>Говори как с подругой, без лекции</li>
-        <li>Паузы, темп, улыбка в голосе</li>
-        <li>Не читай с листа: 3 ключевых слова и своими словами</li>
-      </ol></div>
-    <div class="row">
-      <div class="mini"><p class="label">Задание</p><p>Записать 30 секунд по схеме и сравнить со старыми видео</p></div>
-      <div class="mini"><p class="label">Финал</p><p>На марафоне каждый день практика и обратная связь</p></div>
-    </div>
-  </section>
-
-  <section class="card" id="ii">
-    <div class="top"><span class="num">4</span><h2>Видео нейросетью за 5 минут</h2></div>
-    <div><p class="label">Начни с этого</p><p class="hook">«Все уже делают видео с ИИ? Покажу, как оживить фото за 5 минут, даже если ты в этом ноль».</p></div>
-    <div class="who">
-      <div><p class="label">Сегмент</p><p>Новички, лайфстайл («хочу популярности и возможностей»)</p></div>
-      <div><p class="label">Стадия</p><p><span class="stage">Холодный, любопытство</span></p></div>
-      <div class="wide"><p class="label">Вопрос в голове</p><p>«Все делают видео нейросетями, а я отстаю?»</p></div>
-      <div><p class="label">Боль</p><p>Страх отстать, кажется, что это сложно</p></div>
-      <div><p class="label">Триггер</p><p>Видит ИИ-видео в ленте и хочет так же</p></div>
-    </div>
-    <div><p class="label">Скажи по порядку</p>
-      <ol>
-        <li>Зачем: оживлённое фото цепляет взгляд в ленте</li>
-        <li>Какой сервис взять и сколько стоит</li>
-        <li>Покажи на экране: загрузил фото → написал, что должно произойти → скачал</li>
-        <li>Где применить: блог, поздравление, реклама услуги</li>
-        <li>Ошибки: мутные фото, слишком много движения</li>
-      </ol></div>
-    <div class="row">
-      <div class="mini"><p class="label">Задание</p><p>Оживить своё фото и выложить в сторис</p></div>
-      <div class="mini"><p class="label">Финал</p><p>Хочешь видео, которые работают каждый день, — на марафон</p></div>
-    </div>
-  </section>
-
-  <section class="card" id="huk">
-    <div class="top"><span class="num">5</span><h2>Первые 3 секунды</h2></div>
-    <div><p class="label">Начни с этого</p><p class="hook">«Почему у тебя 200 просмотров? Видео листают в первые 3 секунды».</p></div>
-    <div class="who">
-      <div><p class="label">Сегмент</p><p>Все, кто уже снимает</p></div>
-      <div><p class="label">Стадия</p><p><span class="stage">Снимает, упёрся в охваты</span></p></div>
-      <div class="wide"><p class="label">Вопрос в голове</p><p>«Почему у меня так мало просмотров?»</p></div>
-      <div><p class="label">Боль</p><p>Старается, а видео пролистывают</p></div>
-      <div><p class="label">Триггер</p><p>Опять 200 просмотров под новым видео</p></div>
-    </div>
-    <div><p class="label">Скажи по порядку</p>
-      <ol>
-        <li>В первом кадре: движение, текст, сразу суть</li>
-        <li>Начала: вопрос, ошибка, результат вначале, запрет, цифра</li>
-        <li>Ещё: провокация, секрет, «если ты тоже…», до/после, неожиданный кадр</li>
-        <li>Текст на экране: до 7 слов, крупно, в центре</li>
-        <li>Разбери 2 своих ролика: где сработало, где нет</li>
-      </ol></div>
-    <div class="row">
-      <div class="mini"><p class="label">Задание</p><p>Переснять начало старого видео с низкими просмотрами</p></div>
-      <div class="mini"><p class="label">Финал</p><p>На марафоне каждый день проверяем, какие начала работают</p></div>
-    </div>
-  </section>
-
-  <section class="card" id="lico">
-    <div class="top"><span class="num">6</span><h2>Если не нравишься себе на видео</h2></div>
-    <div><p class="label">Начни с этого</p><p class="hook">«Видишь себя на видео и думаешь: это не я? Это нормально и поправимо».</p></div>
-    <div class="who">
-      <div><p class="label">Сегмент</p><p>Женщины, 45+, новички («хочу проявиться»)</p></div>
-      <div><p class="label">Стадия</p><p><span class="stage">Хочет, но барьер</span></p></div>
-      <div class="wide"><p class="label">Вопрос в голове</p><p>«Я себе не нравлюсь на видео: лицо, голос. Это вообще можно исправить?»</p></div>
-      <div><p class="label">Боль</p><p>Неприятие себя в кадре</p></div>
-      <div><p class="label">Триггер</p><p>Пересмотрела своё видео и удалила, не выложив</p></div>
-    </div>
-    <div><p class="label">Скажи по порядку</p>
-      <ol>
-        <li>Почему так: привыкли к зеркалу, голос изнутри звучит иначе</li>
-        <li>Свет: встань лицом к окну</li>
-        <li>Ракурс: телефон чуть выше глаз, не снизу</li>
-        <li>Голос: послушай себя 5–6 раз, и он станет своим</li>
-        <li>Постепенно: руки → голос за кадром → лицо</li>
-        <li>История участницы 45+</li>
-      </ol></div>
-    <div class="row">
-      <div class="mini"><p class="label">Задание</p><p>Снять себя у окна и сравнить со старым видео</p></div>
-      <div class="mini"><p class="label">Финал</p><p>На марафоне рядом люди, которые проходят то же самое</p></div>
-    </div>
-  </section>
-
-  <p class="foot">Ссылки в бот, тексты и оформление делает команда. От тебя только запись.</p>
 </div>
-
 </body>
 </html>
